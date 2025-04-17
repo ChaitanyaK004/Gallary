@@ -3,24 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <title>jQuery Image Gallery</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .gallery img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .filter-btns .btn {
+      margin: 0 5px 15px;
+    }
+  </style>
 </head>
 <body>
 
-  <div class="gallery">
-    <div class="main-image">
-      Gallery
-    </div>
-    <div class="thumbnails">
-      <img src="https://media.istockphoto.com/id/1381637603/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=w64j3fW8C96CfYo3kbi386rs_sHH_6BGe8lAAAFS-y4=" alt="1">
-      <img src="https://static.vecteezy.com/system/resources/thumbnails/039/545/117/small/ai-generated-beautiful-rose-flowers-with-butterflies-flying-on-them-video.jpg" alt="2">
-      <img src="https://thumbs.dreamstime.com/b/breathtaking-views-hawaii-s-beautiful-scenery-beautiful-nature-professional-photo-no-people-ar-v-job-id-c-d-de-f-bc-ae-cee-ae-356178916.jpg" alt="3">
-      <img src="https://static.vecteezy.com/system/resources/previews/036/758/082/non_2x/ai-generated-beautiful-sunset-on-the-beach-sea-waves-and-splashes-photo.jpg" alt="4">
-    </div>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Image Gallery with jQuery</h2>
+
+  <!-- Filter Buttons -->
+  <div class="text-center filter-btns">
+    <button class="btn btn-outline-primary filter-btn" data-filter="all">All</button>
+    <button class="btn btn-outline-success filter-btn" data-filter="nature">Nature</button>
+    <button class="btn btn-outline-warning filter-btn" data-filter="animals">Animals</button>
+    <button class="btn btn-outline-danger filter-btn" data-filter="architecture">Car</button>
   </div>
 
+  <!-- Gallery Images -->
+  <div class="row gallery">
+    <div class="col-md-4 mb-4 gallery-item nature">
+      <a href="https://i.pinimg.com/736x/fd/89/cc/fd89cce0b421b6b4d37959ffc4422efc.jpg" target="_blank">
+      <img src="https://i.pinimg.com/736x/fd/89/cc/fd89cce0b421b6b4d37959ffc4422efc.jpg" alt="Nature 1">
+    </div>
+    <div class="col-md-4 mb-4 gallery-item animals">
+      <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQAaFjeo8HbOdAP7Cuy37Hmo5HMS4V8dZFUw&s" target="_blank">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQAaFjeo8HbOdAP7Cuy37Hmo5HMS4V8dZFUw&s" alt="Animal 1">
+    </div>
+    <div class="ol-md-4 mb-4 gallery-item architecture">
+      <a href="https://wallpapercat.com/w/full/1/e/1/607773-1920x1080-desktop-full-hd-sports-car-wallpaper.jpg" target="_blank">
+      <img src="https://wallpapercat.com/w/full/1/e/1/607773-1920x1080-desktop-full-hd-sports-car-wallpaper.jpg" alt="Car 1">
+    </div>
+    <div class="col-md-4 mb-4 gallery-item nature">
+      <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoHwpDcDTQaXme54x16yp2tAQKceNuj_1Jaw&s" target="_blank">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoHwpDcDTQaXme54x16yp2tAQKceNuj_1Jaw&s" alt="Nature 2">
+    </div>
+    <div class="col-md-4 mb-4 gallery-item animals">
+      <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS24IvjCt-b4q6aWhw_B_vBkw-Et7jn2lIOcw&s" target="_blank">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS24IvjCt-b4q6aWhw_B_vBkw-Et7jn2lIOcw&s" alt="Animal 2">
+    </div>
+    <div class="ol-md-4 mb-4 gallery-item architecture">
+      <a href="https://live.staticflickr.com/4406/37253821536_9d94f920f8_b.jpg" target="_blank" target="_blank">
+      <img src="https://live.staticflickr.com/4406/37253821536_9d94f920f8_b.jpg" alt="Car 2">
+    </div>
+  </div>
+</div>
 
-  <script src="script.js"></script>
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.filter-btn').click(function () {
+      var filterValue = $(this).attr('data-filter');
+
+      if (filterValue === 'all') {
+        $('.gallery-item').fadeIn(500);
+      } else {
+        $('.gallery-item').hide();
+        $('.' + filterValue).slideDown(500);
+      }
+
+      // Optional: Add active button style
+      $('.filter-btn').removeClass('active');
+      $(this).addClass('active');
+    });
+  });
+</script>
+
 </body>
 </html>
